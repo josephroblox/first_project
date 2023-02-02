@@ -11,3 +11,7 @@ class Registrado(models.Model):
       def __str__(self): #python 3
           return self.nombre
       
+class Calificacion(models.Model):
+    alumno = models.ForeignKey(Registrado)
+    clase = models.Charfield(max_length=100, blank=False, null=False)
+    nota = models.FloatField()
