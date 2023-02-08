@@ -10,8 +10,11 @@ class Registrado(models.Model):
 
       def __str__(self): #python 3
           return self.nombre
-      
+ #CASCADE: borra automaticamente todos los registros relacionados
+ #PROTECT: evita que se borren si tiene registros relacionados 
+ #SET_NULL: coloca en valor nulo todos los valores relacionados     
 class Calificacion(models.Model):
-    alumno = models.ForeignKey(Registrado)
-    clase = models.Charfield(max_length=100, blank=False, null=False)
+    alumno = models.ForeignKey(Registrado,on_delete=models.PROTECT)
+    clase = models.CharField(max_length=100, blank=False, null=False)
     nota = models.FloatField()
+    
